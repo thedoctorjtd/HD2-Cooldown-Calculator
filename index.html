@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helldivers 2 Stratagem Cooldown Calculator</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Helldivers 2 Stratagem Cooldown Calculator</h1>
+    </header>
+    <div class="container">
+        <!-- Accordion for Upgrades -->
+        <div class="accordion-section">
+            <div class="accordion-header" id="upgradeAccordionHeader">
+                <h2>Select Your Ship Upgrades</h2>
+                <span class="accordion-icon"></span>
+            </div>
+            <div class="accordion-content" id="upgradeAccordionContent">
+                <div class="upgrade-category" id="patrioticAdministrationCenter">
+                    <h3>Patriotic Administration Center</h3>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="PatrioticAdministrationCenter-1" /> Streamlined
+                            Request Process (Decreases Support Weapon cooldown by 10%) </label>
+                    </div>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="PatrioticAdministrationCenter-2" /> Hand Carts
+                            (Decreases Backpack stratagem cooldown by 10%) </label>
+                    </div>
+                </div>
+                <div class="upgrade-category" id="orbitalCannons">
+                    <h3>Orbital Cannons</h3>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="OrbitalCannons-1" /> Zero-G Breech Loading (Orbital
+                            stratagem cooldown -10%) </label>
+                    </div>
+                </div>
+                <div class="upgrade-category" id="hangar">
+                    <h3>Hangar</h3>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="Hangar-1" /> Liquid-Ventilated Cockpit (Eagle
+                            cooldown -50% between uses) </label>
+                    </div>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="Hangar-2" /> Pit Crew Hazard Pay (Eagle Re-arm time
+                            -20%) </label>
+                    </div>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="Hangar-3" /> Expanded Weapons Bay (Eagle uses per
+                            re-arm +1) </label>
+                    </div>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="Hangar-4" /> Advanced Crew Training (Re-arm -10% if
+                            called in early) </label>
+                    </div>
+                </div>
+                <div class="upgrade-category" id="bridge">
+                    <h3>Bridge</h3>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="Bridge-1" /> Morale Augmentation (All stratagem
+                            cooldowns -5%) </label>
+                    </div>
+                </div>
+                <div class="upgrade-category" id="engineeringBay">
+                    <h3>Engineering Bay</h3>
+                    <div class="upgrade-row">
+                        <label>
+                            <input type="checkbox" data-upgrade-id="EngineeringBay-1" /> Synthetic Supplementation
+                            (Sentry, Emplacement, Resupply cooldown -10%) </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SEARCH BAR -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search stratagems (by name or category)..." />
+            <label id="fluctuationsLabel">
+                <input type="checkbox" id="orbitalFluctuationsCheckbox" /> Orbital Fluctuations (+25% All Cooldowns)
+            </label>
+        </div>
+        <!-- Container for the category-based tables -->
+        <div id="stratagemTablesContainer"></div>
+    </div>
+    <!-- Main JS (ES modules) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
