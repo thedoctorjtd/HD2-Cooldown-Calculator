@@ -1,6 +1,6 @@
 # Helldivers 2 Stratagem Cooldown Calculator
 
-A fan-made web app to calculate Helldivers 2 stratagem cooldowns based on various upgrades and modifiers.  
+A fan-made web app to calculate Helldivers 2 stratagem cooldowns based on ship upgrades and modifiers.  
 Live site: [https://hd2-cooldowns.the-doc.org](https://hd2-cooldowns.the-doc.org)
 
 ---
