@@ -22,7 +22,7 @@ const baseEagles = [
   },
   {
     name: "Eagle 110mm Rocket Pods",
-    baseUsesPerRearm: 2,
+    baseUsesPerRearm: 3,
   },
   {
     name: "Eagle 500kg Bomb",

@@ -4,13 +4,13 @@ const baseVehicles = [
     name: "EXO-45 Patriot Exosuit",
     baseCooldown: 600,
     type: "limited",
-    maxUses: 2,
+    maxUses: 3,
   },
   {
     name: "EXO-49 Emancipator Exosuit",
     baseCooldown: 600,
     type: "limited",
-    maxUses: 2,
+    maxUses: 3,
   },
   {
     name: "M-102 Fast Recon Vehicle",
