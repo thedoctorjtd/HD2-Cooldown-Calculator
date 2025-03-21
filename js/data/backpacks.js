@@ -31,6 +31,11 @@ const baseBackpacks = [
     type: "unlimited",
   },
   {
+    name: "LIFT-860 Hover Pack",
+    baseCooldown: 480,
+    type: "unlimited",
+  },
+  {
     name: "SH-20 Ballistic Shield Backpack",
     baseCooldown: 300,
     type: "unlimited",
