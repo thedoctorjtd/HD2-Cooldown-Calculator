@@ -11,6 +11,11 @@ const baseEmplacements = [
     type: "unlimited",
   },
   {
+    name: "E/GL-21 Grenadier Battlement",
+    baseCooldown: 180,
+    type: "unlimited",
+  },
+  {
     name: "FX-12 Shield Generator Relay",
     baseCooldown: 90,
     type: "unlimited",
