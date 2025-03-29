@@ -12,7 +12,7 @@ const baseEmplacements = [
   },
   {
     name: "E/GL-21 Grenadier Battlement",
-    baseCooldown: 180,
+    baseCooldown: 120,
     type: "unlimited",
   },
   {
