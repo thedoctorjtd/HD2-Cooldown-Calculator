@@ -1,112 +1,178 @@
-// main.js
-
 import { STRATAGEMS } from "./data/allStratagems.js";
-import { getUpgradeEffects, enforceUpgradeProgressions } from "./upgrades.js";
+import {
+  ALL_UPGRADES,
+  getUpgradeEffects,
+  enforceUpgradeProgressions,
+} from "./upgrades.js";
+import { updateRocketsUI } from "./rocketsPage.js";
 
 /*********************************************************
- * 1. DOM & EVENT SETUP
+ * GLOBAL STATE & DOM SELECTORS
  *********************************************************/
+window.shipUpgradesAccordionOpen = false; // Global flag for accordion state
 
-// Toggle the accordion
-const upgradeAccordionHeader = document.getElementById(
-  "upgradeAccordionHeader"
+// Tab elements and page containers
+const tabStratagems = document.getElementById("tabStratagems");
+const tabRockets = document.getElementById("tabRockets");
+const stratagemPage = document.getElementById("stratagemPage");
+const rocketsPage = document.getElementById("rocketsPage");
+
+// Global Ship Upgrades Accordion elements
+const globalAccordionHeader = document.getElementById(
+  "globalUpgradesAccordionHeader"
 );
-const upgradeAccordionContent = document.getElementById(
-  "upgradeAccordionContent"
+const globalAccordionContent = document.getElementById(
+  "globalShipUpgradesContainer"
 );
-upgradeAccordionHeader.addEventListener("click", () => {
-  if (upgradeAccordionContent.classList.contains("open")) {
-    upgradeAccordionContent.classList.remove("open");
-    upgradeAccordionContent.style.maxHeight = 0;
-    upgradeAccordionHeader.classList.remove("active");
+
+/*********************************************************
+ * ACCORDION OPEN/CLOSE HELPERS
+ *********************************************************/
+function openAccordion(headerEl, contentEl) {
+  headerEl.classList.add("active");
+  contentEl.classList.add("open");
+  contentEl.style.maxHeight = contentEl.scrollHeight + "px";
+}
+
+function closeAccordion(headerEl, contentEl) {
+  headerEl.classList.remove("active");
+  contentEl.classList.remove("open");
+  contentEl.style.maxHeight = 0;
+}
+
+// Toggle accordion on header click.
+globalAccordionHeader.addEventListener("click", () => {
+  if (globalAccordionContent.classList.contains("open")) {
+    closeAccordion(globalAccordionHeader, globalAccordionContent);
+    window.shipUpgradesAccordionOpen = false;
   } else {
-    upgradeAccordionContent.classList.add("open");
-    upgradeAccordionContent.style.maxHeight =
-      upgradeAccordionContent.scrollHeight + "px";
-    upgradeAccordionHeader.classList.add("active");
+    openAccordion(globalAccordionHeader, globalAccordionContent);
+    window.shipUpgradesAccordionOpen = true;
   }
-});
-
-// On checkbox change, re-render & save
-document.addEventListener("change", function (e) {
-  if (e.target.matches('input[type="checkbox"][data-upgrade-id]')) {
-    let upgradeId = e.target.getAttribute("data-upgrade-id");
-    let isChecked = e.target.checked;
-
-    // Enforce linear progression
-    enforceUpgradeProgressions(upgradeId, isChecked);
-
-    // Re-render
-    updateUI();
-
-    // Save
-    saveSelectedUpgrades();
-  } else if (e.target.matches('input[type="checkbox"]')) {
-    updateUI();
-  }
-});
-
-// Search bar listener
-const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("input", () => {
-  updateUI();
-});
-
-// On load
-window.addEventListener("DOMContentLoaded", () => {
-  // Load from localStorage
-  loadSelectedUpgrades();
-  // Fix progression states
-  let checkboxes = document.querySelectorAll(
-    'input[type="checkbox"][data-upgrade-id]'
-  );
-  checkboxes.forEach((cb) => {
-    enforceUpgradeProgressions(cb.getAttribute("data-upgrade-id"), cb.checked);
-  });
-
-  // Initial render
-  updateUI();
 });
 
 /*********************************************************
- * 2. LOCAL STORAGE & UPGRADE SELECTION
+ * RENDER GLOBAL UPGRADES
  *********************************************************/
-function getSelectedUpgrades() {
-  let checkboxes = document.querySelectorAll(
-    'input[type="checkbox"][data-upgrade-id]'
-  );
-  let selected = [];
-  checkboxes.forEach((cb) => {
-    if (cb.checked) {
-      selected.push(cb.getAttribute("data-upgrade-id"));
-    }
+function renderAllUpgrades() {
+  const container = document.getElementById("globalShipUpgradesContainer");
+  container.innerHTML = "";
+
+  // Define categories in desired order.
+  const categoriesInOrder = [
+    "Patriotic Administration Center",
+    "Orbital Cannons",
+    "Hangar",
+    "Bridge",
+    "Engineering Bay",
+  ];
+
+  categoriesInOrder.forEach((catName) => {
+    const catUpgrades = ALL_UPGRADES.filter((u) => u.category === catName);
+    if (!catUpgrades.length) return;
+
+    const catDiv = document.createElement("div");
+    catDiv.classList.add("upgrade-category");
+
+    const h3 = document.createElement("h3");
+    h3.textContent = catName;
+    catDiv.appendChild(h3);
+
+    catUpgrades.forEach((upgrade) => {
+      const row = document.createElement("div");
+      row.classList.add("upgrade-row");
+      // Store applicable pages for filtering.
+      row.setAttribute("data-pages", upgrade.pages.join(","));
+
+      const label = document.createElement("label");
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.setAttribute("data-upgrade-id", upgrade.id);
+      label.appendChild(cb);
+      label.appendChild(
+        document.createTextNode(
+          ` ${upgrade.shortName} (${upgrade.description})`
+        )
+      );
+      row.appendChild(label);
+      catDiv.appendChild(row);
+    });
+
+    container.appendChild(catDiv);
   });
-  return selected;
+}
+
+/*********************************************************
+ * UPGRADES VISIBILITY BASED ON ACTIVE TAB
+ *********************************************************/
+function refreshUpgradesVisibility(activeTab) {
+  const container = document.getElementById("globalShipUpgradesContainer");
+  const categoryDivs = container.querySelectorAll(".upgrade-category");
+  categoryDivs.forEach((catDiv) => {
+    let hasVisible = false;
+    const rows = catDiv.querySelectorAll(".upgrade-row");
+    rows.forEach((row) => {
+      const pagesArr = row.getAttribute("data-pages").split(",");
+      if (pagesArr.includes(activeTab)) {
+        row.style.display = "";
+        hasVisible = true;
+      } else {
+        row.style.display = "none";
+      }
+    });
+    // Hide the entire category if no rows are visible
+    catDiv.style.display = hasVisible ? "" : "none";
+  });
+}
+
+/*********************************************************
+ * LOCAL STORAGE HANDLING FOR UPGRADES
+ *********************************************************/
+function loadSelectedUpgrades() {
+  const saved = localStorage.getItem("selectedUpgrades");
+  if (!saved) return;
+  const selected = JSON.parse(saved);
+  document
+    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
+    .forEach((cb) => {
+      const id = cb.getAttribute("data-upgrade-id");
+      cb.checked = selected.includes(id);
+    });
 }
 
 function saveSelectedUpgrades() {
-  let selected = getSelectedUpgrades();
+  const selected = [];
+  document
+    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
+    .forEach((cb) => {
+      if (cb.checked) {
+        selected.push(cb.getAttribute("data-upgrade-id"));
+      }
+    });
   localStorage.setItem("selectedUpgrades", JSON.stringify(selected));
 }
 
-function loadSelectedUpgrades() {
-  let saved = localStorage.getItem("selectedUpgrades");
-  if (!saved) return;
-  let selected = JSON.parse(saved);
-  let checkboxes = document.querySelectorAll(
-    'input[type="checkbox"][data-upgrade-id]'
-  );
-  checkboxes.forEach((cb) => {
-    let id = cb.getAttribute("data-upgrade-id");
-    cb.checked = selected.includes(id);
+function getSelectedUpgrades() {
+  const selected = [];
+  document
+    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
+    .forEach((cb) => {
+      if (cb.checked) {
+        selected.push(cb.getAttribute("data-upgrade-id"));
+      }
+    });
+  return selected;
+}
+
+function enforceProgressionOnAllCheckboxes() {
+  document.querySelectorAll("input[data-upgrade-id]").forEach((cb) => {
+    enforceUpgradeProgressions(cb.getAttribute("data-upgrade-id"), cb.checked);
   });
 }
 
 /*********************************************************
- * 3. CALCULATION & RENDERING
+ * STRATAGEMS TABLE RENDERING
  *********************************************************/
-
-// Category display order
 const CATEGORIES_ORDER = [
   "orbitals",
   "eagles",
@@ -118,26 +184,21 @@ const CATEGORIES_ORDER = [
   "miscellaneous",
 ];
 
-// Check if Orbital Fluctuations is active
 function isOrbitalFluctuationsActive() {
   return document.getElementById("orbitalFluctuationsCheckbox").checked;
 }
 
-// Calculate final (single) cooldown for unlimited/limited types
 function calculateCooldown(stratagem, effects) {
   if (stratagem.type === "eagle") {
-    let cd = stratagem.singleUseCd;
-    cd *= effects.universalCooldownMult;
-    cd *= effects.eagleUseCooldownMult;
-    if (isOrbitalFluctuationsActive()) {
-      cd *= 1.25;
-    }
+    let cd =
+      stratagem.singleUseCd *
+      effects.universalCooldownMult *
+      effects.eagleUseCooldownMult;
+    if (isOrbitalFluctuationsActive()) cd *= 1.25;
     return Math.round(cd);
   } else {
-    let cd = stratagem.baseCooldown || 0;
-    cd *= effects.universalCooldownMult;
-
-    let cat = (stratagem.category || "").toLowerCase();
+    let cd = (stratagem.baseCooldown || 0) * effects.universalCooldownMult;
+    const cat = (stratagem.category || "").toLowerCase();
     if (cat === "support weapons") {
       cd *= effects.supportWeaponCooldownMult;
     } else if (cat === "backpacks") {
@@ -147,52 +208,38 @@ function calculateCooldown(stratagem, effects) {
     } else if (["sentries", "emplacements", "miscellaneous"].includes(cat)) {
       cd *= effects.sentryEmplacementResupplyCooldownMult;
     }
-
-    if (isOrbitalFluctuationsActive()) {
-      cd *= 1.25;
-    }
-
+    if (isOrbitalFluctuationsActive()) cd *= 1.25;
     return Math.round(cd);
   }
 }
 
-// For standard unlimited/limited
-function computeUsesForRegular(stratagem, finalCooldown, T) {
+function computeUsesForRegular(stratagem, finalCooldown, totalTime) {
   if (finalCooldown <= 0) return 0;
-
-  // 1 usage at t=0, subsequent uses every finalCooldown
-  let uses = 1 + Math.floor(T / finalCooldown);
-
+  let uses = 1 + Math.floor(totalTime / finalCooldown);
   if (stratagem.type === "limited" && stratagem.maxUses !== undefined) {
     uses = Math.min(uses, stratagem.maxUses);
   }
   return uses;
 }
 
-// For eagles
-function computeUsesForEagle(stratagem, effects, T) {
-  let singleCd = calculateCooldown(stratagem, effects);
-  let baseRearmCd = stratagem.rearmCd * effects.eagleRearmCooldownMult;
-  if (isOrbitalFluctuationsActive()) {
-    baseRearmCd *= 1.25;
-  }
-  baseRearmCd = Math.round(baseRearmCd);
-
-  let usesPerRearm =
+function computeUsesForEagle(stratagem, effects, totalTime) {
+  const singleCd = calculateCooldown(stratagem, effects);
+  let baseRearmCd = Math.round(
+    stratagem.rearmCd *
+      effects.eagleRearmCooldownMult *
+      (isOrbitalFluctuationsActive() ? 1.25 : 1)
+  );
+  const usesPerRearm =
     stratagem.baseUsesPerRearm + effects.eagleUsesPerRearmBonus;
-  let time = 0;
-  let totalUses = 0;
-
+  let time = 0,
+    totalUses = 0;
   while (true) {
-    // Use up 'usesPerRearm' times
     for (let i = 0; i < usesPerRearm; i++) {
-      if (time > T) return totalUses;
+      if (time > totalTime) return totalUses;
       totalUses++;
       time += singleCd;
     }
-    if (time > T) return totalUses;
-
-    // Now re-arm
+    if (time > totalTime) return totalUses;
     time += baseRearmCd;
   }
 }
@@ -200,40 +247,33 @@ function computeUsesForEagle(stratagem, effects, T) {
 function renderTables(stratagems, selectedUpgrades) {
   const container = document.getElementById("stratagemTablesContainer");
   container.innerHTML = "";
-
   const effects = getUpgradeEffects(selectedUpgrades);
 
   CATEGORIES_ORDER.forEach((cat) => {
-    let catItems = stratagems.filter((s) => s.category.toLowerCase() === cat);
-    if (catItems.length === 0) return; // skip empty
+    const catItems = stratagems.filter((s) => s.category.toLowerCase() === cat);
+    if (!catItems.length) return;
 
-    // Wrapper div for everything
-    let section = document.createElement("div");
+    const section = document.createElement("div");
     section.classList.add("category-section");
 
-    // HEADER (clickable to collapse)
-    let header = document.createElement("div");
+    const header = document.createElement("div");
     header.classList.add("category-header");
     header.textContent = cat;
 
-    // ICON or symbol to show expand/collapse
-    let iconSpan = document.createElement("span");
+    const iconSpan = document.createElement("span");
     iconSpan.classList.add("category-icon");
     iconSpan.textContent = "–";
     header.appendChild(iconSpan);
 
-    // CONTENT (the actual table)
-    let content = document.createElement("div");
+    const content = document.createElement("div");
     content.classList.add("category-content", "open");
-    // "open" means it's expanded by default
 
-    // Build the table
-    let table = document.createElement("table");
-    let thead = document.createElement("thead");
-    let headerRow = document.createElement("tr");
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
     ["Name", "Cooldown", "Use Limit", "Uses / 5 Min", "Uses / 40 Min"].forEach(
       (col) => {
-        let th = document.createElement("th");
+        const th = document.createElement("th");
         th.textContent = col;
         headerRow.appendChild(th);
       }
@@ -241,25 +281,23 @@ function renderTables(stratagems, selectedUpgrades) {
     thead.appendChild(headerRow);
     table.appendChild(thead);
 
-    let tbody = document.createElement("tbody");
+    const tbody = document.createElement("tbody");
     catItems.forEach((strat) => {
-      let row = document.createElement("tr");
+      const row = document.createElement("tr");
 
-      // name
-      let nameTd = document.createElement("td");
+      const nameTd = document.createElement("td");
       nameTd.textContent = strat.name;
       row.appendChild(nameTd);
 
-      // cooldown
-      let cdTd = document.createElement("td");
+      const cdTd = document.createElement("td");
       if (strat.type === "eagle") {
-        let singleCd = calculateCooldown(strat, effects);
-        let baseRearmCd = strat.rearmCd * effects.eagleRearmCooldownMult;
-        if (isOrbitalFluctuationsActive()) {
-          baseRearmCd *= 1.25;
-        }
-        baseRearmCd = Math.round(baseRearmCd);
-        let earlyRearmCd = Math.round(
+        const singleCd = calculateCooldown(strat, effects);
+        let baseRearmCd = Math.round(
+          strat.rearmCd *
+            effects.eagleRearmCooldownMult *
+            (isOrbitalFluctuationsActive() ? 1.25 : 1)
+        );
+        const earlyRearmCd = Math.round(
           baseRearmCd * effects.eagleEarlyRearmMult
         );
         let text = `Single: ${singleCd}s, Rearm: ${baseRearmCd}s`;
@@ -268,17 +306,15 @@ function renderTables(stratagems, selectedUpgrades) {
         }
         cdTd.textContent = text;
       } else {
-        let finalCd = calculateCooldown(strat, effects);
-        cdTd.textContent = finalCd + "s";
+        cdTd.textContent = `${calculateCooldown(strat, effects)}s`;
       }
       row.appendChild(cdTd);
 
-      // use limit
-      let limitTd = document.createElement("td");
+      const limitTd = document.createElement("td");
       if (strat.type === "limited" && strat.maxUses !== undefined) {
         limitTd.textContent = strat.maxUses;
       } else if (strat.type === "eagle") {
-        let usesPerRearm =
+        const usesPerRearm =
           strat.baseUsesPerRearm + effects.eagleUsesPerRearmBonus;
         limitTd.textContent = `${usesPerRearm} / rearm (∞)`;
       } else {
@@ -286,44 +322,41 @@ function renderTables(stratagems, selectedUpgrades) {
       }
       row.appendChild(limitTd);
 
-      // uses / 5 min
-      let uses5Td = document.createElement("td");
+      const uses5Td = document.createElement("td");
       if (strat.type === "eagle") {
         uses5Td.textContent = computeUsesForEagle(strat, effects, 300);
       } else {
-        let finalCd = calculateCooldown(strat, effects);
-        uses5Td.textContent = computeUsesForRegular(strat, finalCd, 300);
+        uses5Td.textContent = computeUsesForRegular(
+          strat,
+          calculateCooldown(strat, effects),
+          300
+        );
       }
       row.appendChild(uses5Td);
 
-      // uses / 40 min
-      let uses40Td = document.createElement("td");
+      const uses40Td = document.createElement("td");
       if (strat.type === "eagle") {
         uses40Td.textContent = computeUsesForEagle(strat, effects, 2400);
       } else {
-        let finalCd = calculateCooldown(strat, effects);
-        uses40Td.textContent = computeUsesForRegular(strat, finalCd, 2400);
+        uses40Td.textContent = computeUsesForRegular(
+          strat,
+          calculateCooldown(strat, effects),
+          2400
+        );
       }
       row.appendChild(uses40Td);
 
       tbody.appendChild(row);
     });
-
     table.appendChild(tbody);
     content.appendChild(table);
-
-    // Put header + content in the section
     section.appendChild(header);
     section.appendChild(content);
-
-    // Add the section to container
     container.appendChild(section);
 
-    // Setup click on header to toggle
+    // Collapsible category table logic.
     header.addEventListener("click", () => {
-      // Toggle "open" class on content
       content.classList.toggle("open");
-      // Toggle icon
       if (content.classList.contains("open")) {
         iconSpan.textContent = "–";
         content.style.maxHeight = content.scrollHeight + "px";
@@ -332,15 +365,13 @@ function renderTables(stratagems, selectedUpgrades) {
         content.style.maxHeight = 0;
       }
     });
-
-    // Make sure it’s expanded by default
     content.style.maxHeight = content.scrollHeight + "px";
   });
 }
 
 function filterStratagems(stratagems, filterText) {
   if (!filterText) return stratagems;
-  let search = filterText.toLowerCase();
+  const search = filterText.toLowerCase();
   return stratagems.filter(
     (s) =>
       s.name.toLowerCase().includes(search) ||
@@ -348,8 +379,87 @@ function filterStratagems(stratagems, filterText) {
   );
 }
 
+/*********************************************************
+ * UI UPDATE FUNCTION
+ *********************************************************/
 function updateUI() {
-  let selectedUpgrades = getSelectedUpgrades();
-  let filtered = filterStratagems(STRATAGEMS, searchInput.value);
-  renderTables(filtered, selectedUpgrades);
+  const selectedUpgrades = getSelectedUpgrades();
+  const searchText = document.getElementById("searchInput").value;
+  const filteredStratagems = filterStratagems(STRATAGEMS, searchText);
+  updateRocketsUI();
+  renderTables(filteredStratagems, selectedUpgrades);
 }
+
+/*********************************************************
+ * EVENT LISTENERS
+ *********************************************************/
+// Combined change event listener for all checkboxes and dropdowns.
+document.addEventListener("change", (e) => {
+  if (e.target.matches('input[type="checkbox"][data-upgrade-id]')) {
+    enforceUpgradeProgressions(
+      e.target.getAttribute("data-upgrade-id"),
+      e.target.checked
+    );
+    saveSelectedUpgrades();
+    updateUI();
+  } else if (e.target.matches('input[type="checkbox"]')) {
+    updateUI();
+  } else if (e.target.matches("select")) {
+    // Handle dropdown changes (e.g., planet weather, resupply count)
+    updateRocketsUI();
+  }
+});
+
+/*********************************************************
+ * TAB SWITCHING LOGIC
+ *********************************************************/
+tabStratagems.addEventListener("click", () => {
+  stratagemPage.style.display = "block";
+  rocketsPage.style.display = "none";
+
+  tabStratagems.classList.add("active");
+  tabRockets.classList.remove("active");
+
+  loadSelectedUpgrades();
+  enforceProgressionOnAllCheckboxes();
+  refreshUpgradesVisibility("stratagems");
+
+  if (window.shipUpgradesAccordionOpen) {
+    openAccordion(globalAccordionHeader, globalAccordionContent);
+  } else {
+    closeAccordion(globalAccordionHeader, globalAccordionContent);
+  }
+  updateUI();
+});
+
+tabRockets.addEventListener("click", () => {
+  stratagemPage.style.display = "none";
+  rocketsPage.style.display = "block";
+
+  tabStratagems.classList.remove("active");
+  tabRockets.classList.add("active");
+
+  loadSelectedUpgrades();
+  enforceProgressionOnAllCheckboxes();
+  refreshUpgradesVisibility("rockets");
+
+  if (window.shipUpgradesAccordionOpen) {
+    openAccordion(globalAccordionHeader, globalAccordionContent);
+  } else {
+    closeAccordion(globalAccordionHeader, globalAccordionContent);
+  }
+  updateRocketsUI();
+});
+
+/*********************************************************
+ * INITIALIZATION
+ *********************************************************/
+window.addEventListener("DOMContentLoaded", () => {
+  renderAllUpgrades();
+  loadSelectedUpgrades();
+  enforceProgressionOnAllCheckboxes();
+  refreshUpgradesVisibility("stratagems");
+  closeAccordion(globalAccordionHeader, globalAccordionContent);
+  window.shipUpgradesAccordionOpen = false;
+  updateUI();
+});

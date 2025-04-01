@@ -4,100 +4,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helldivers 2 Stratagem Cooldown Calculator</title>
+  <title>Helldivers 2 Stratagem & Rockets Calculator</title>
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
   <header>
-    <h1>Helldivers 2 Stratagem Cooldown Calculator</h1>
+    <h1>Helldivers 2 Stratagem & Rockets Calculator</h1>
   </header>
-  <div class="container">
-    <!-- Accordion for Upgrades -->
-    <div class="accordion-section">
-      <div class="accordion-header" id="upgradeAccordionHeader">
-        <h2>Select Your Ship Upgrades</h2>
-        <span class="accordion-icon"></span>
-      </div>
-      <div class="accordion-content" id="upgradeAccordionContent">
-        <div class="upgrade-category" id="patrioticAdministrationCenter">
-          <h3>Patriotic Administration Center</h3>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="PatrioticAdministrationCenter-1" /> Streamlined Request Process
-              (Decreases Support Weapon cooldown by 10%) </label>
-          </div>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="PatrioticAdministrationCenter-2" /> Hand Carts (Decreases Backpack
-              stratagem cooldown by 10%) </label>
-          </div>
-        </div>
-        <div class="upgrade-category" id="orbitalCannons">
-          <h3>Orbital Cannons</h3>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="OrbitalCannons-1" /> Zero-G Breech Loading (Orbital stratagem
-              cooldown -10%) </label>
-          </div>
-        </div>
-        <div class="upgrade-category" id="hangar">
-          <h3>Hangar</h3>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="Hangar-1" /> Liquid-Ventilated Cockpit (Eagle cooldown -50%
-              between uses) </label>
-          </div>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="Hangar-2" /> Pit Crew Hazard Pay (Eagle Re-arm time -20%) </label>
-          </div>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="Hangar-3" /> Expanded Weapons Bay (Eagle uses per re-arm +1)
-            </label>
-          </div>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="Hangar-4" /> Advanced Crew Training (Re-arm -10% if called in
-              early) </label>
-          </div>
-        </div>
-        <div class="upgrade-category" id="bridge">
-          <h3>Bridge</h3>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="Bridge-1" /> Morale Augmentation (All stratagem cooldowns -5%)
-            </label>
-          </div>
-        </div>
-        <div class="upgrade-category" id="engineeringBay">
-          <h3>Engineering Bay</h3>
-          <div class="upgrade-row">
-            <label>
-              <input type="checkbox" data-upgrade-id="EngineeringBay-1" /> Synthetic Supplementation (Sentry,
-              Emplacement, Resupply cooldown -10%) </label>
-          </div>
-        </div>
-      </div>
+  <!-- Tab Navigation -->
+  <div class="tabs">
+    <button id="tabStratagems" class="tab active">Stratagems</button>
+    <button id="tabRockets" class="tab">Rockets</button>
+  </div>
+  <!-- Global Ship Upgrades Accordion -->
+  <div class="accordion-section">
+    <div class="accordion-header" id="globalUpgradesAccordionHeader">
+      <h2>Select Your Ship Upgrades</h2>
+      <span class="accordion-icon"></span>
     </div>
-    <!-- SEARCH BAR -->
+    <div class="accordion-content" id="globalShipUpgradesContainer" style="max-height: 0;"></div>
+  </div>
+  <!-- Stratagems Page -->
+  <div id="stratagemPage" class="container">
+    <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search stratagems (by name or category)..." />
       <label id="fluctuationsLabel">
         <input type="checkbox" id="orbitalFluctuationsCheckbox" /> Orbital Fluctuations (+25% All Cooldowns) </label>
     </div>
-    <!-- Container for the category-based tables -->
+    <!-- Container for Stratagem Tables -->
     <div id="stratagemTablesContainer"></div>
   </div>
-  <!-- Main JS (ES modules) -->
+  <!-- Rockets Page -->
+  <div id="rocketsPage" class="container" style="display: none;">
+    <!-- Mission Configuration Section -->
+    <div class="mission-config">
+      <h2>Mission Configuration</h2>
+      <div class="config-row">
+        <label>
+          <input type="checkbox" id="orbitalFluctuationsCheckboxRockets" /> Orbital Fluctuations (+25% Cooldowns)
+        </label>
+      </div>
+      <div class="config-row">
+        <label>
+          <input type="checkbox" id="complexPlottingCheckbox" /> Complex Stratagem Plotting (+50% Call-in Time) </label>
+      </div>
+      <div class="config-row">
+        <label>Planet Weather:</label>
+        <select id="planetWeatherSelect">
+          <option value="Normal" selected>Normal</option>
+          <option value="Cold">Cold</option>
+          <option value="Hot">Hot</option>
+        </select>
+      </div>
+      <div class="config-row">
+        <label>Resupplies per Pod:</label>
+        <select id="resupplyCountSelect">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+    </div>
+    <!-- Rockets Results Table -->
+    <div id="rocketsResultsContainer"></div>
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <p>
+        <em> Disclaimer: Due to the Commando's low damage output—requiring two rockets per kill—the ammo capacity is
+          effectively halved for these calculations. </em>
+      </p>
+    </div>
+  </div>
+  <!-- Main JavaScript Modules -->
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/rocketsPage.js"></script>
   <footer>
-    <p>Made by <strong>theDoctor</strong> | <a href="https://github.com/thedoctorjtd/HD2-Cooldown-Calculator"
+    <p> Made by <strong>theDoctor</strong> | <a href="https://github.com/thedoctorjtd/HD2-Cooldown-Calculator"
         target="_blank">GitHub</a>
     </p>
-    <p>Helldivers™ is a trademark of Arrowhead Game Studios. This app is fan-made and unofficial.</p>
+    <p> Helldivers™ is a trademark of Arrowhead Game Studios. This app is fan-made and unofficial. </p>
   </footer>
 </body>
 
