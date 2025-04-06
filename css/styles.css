@@ -48,6 +48,9 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  justify-content: center; /* Center the content horizontally */
+  text-align: center; /* Center the text within the header */
+  flex-direction: column; /* Stack the title and icon vertically */
 }
 
 .accordion-header h2 {
