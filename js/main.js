@@ -213,7 +213,11 @@ function calculateCooldown(stratagem, effects) {
     } else if (["sentries", "emplacements", "miscellaneous"].includes(cat)) {
       cd *= effects.sentryEmplacementResupplyCooldownMult;
     }
-    if (isDssPresenceActive() && cat === "vehicles" && stratagem.name.toLowerCase().includes("exosuit")) {
+    if (
+      isDssPresenceActive() &&
+      cat === "vehicles" &&
+      stratagem.name.toLowerCase().includes("exosuit")
+    ) {
       cd *= 0.5;
     }
     if (isOrbitalFluctuationsActive()) cd *= 1.25;
