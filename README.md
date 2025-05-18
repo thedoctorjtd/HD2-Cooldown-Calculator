@@ -1,13 +1,20 @@
-# Helldivers 2 Stratagem Cooldown Calculator
+# Helldivers 2 Stratagem & Rocket Cooldown Calculator
 
-A fan-made web app to calculate Helldivers 2 stratagem cooldowns based on ship upgrades and modifiers.  
+A fan-made web app to calculate Helldivers 2 stratagem cooldowns and maximum rocket usage based on ship upgrades, mission settings, and other modifiers.
 Live site: [https://hd2-cooldowns.the-doc.org](https://hd2-cooldowns.the-doc.org)
 
 ---
 
 ## About
 
-This tool lets you select ship upgrades, toggle orbital fluctuations, and see calculated cooldowns and maximum usage counts for each stratagem.
+This tool lets you select ship upgrades, toggle orbital fluctuations, and see calculated stratagem cooldowns and maximum rocket usage.
+## Features
+
+- Calculate cooldowns for all stratagems.
+- Calculate maximum AT rocket usage.
+- Select ship upgrades that affect cooldown times.
+- Choose mission configuration options for rockets to tailor the results.
+
 
 ## Contributing
 
