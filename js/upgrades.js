@@ -85,7 +85,7 @@ export const ALL_UPGRADES = [
     id: "Bridge-1",
     category: "Bridge",
     shortName: "Morale Augmentation",
-    description: "All stratagem and rocket cooldowns -5%",
+    description: "All stratagem cooldowns -5%",
     pages: ["stratagems", "rockets"],
   },
 
