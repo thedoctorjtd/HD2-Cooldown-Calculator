@@ -18,8 +18,18 @@ This tool lets you select ship upgrades, toggle orbital fluctuations, and see ca
 
 ## Contributing
 
-Pull requests are welcome!  
+Pull requests are welcome!
 If you would like to add new features, fix bugs, or expand the data, feel free to open a PR.
+
+## Testing
+
+The project uses Node's built-in test runner. After installing Node, run:
+
+```bash
+npm test
+```
+
+This will execute the tests found in the `tests/` directory.
 
 ## License
 
