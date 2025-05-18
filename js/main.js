@@ -10,6 +10,8 @@ import { updateRocketsUI } from "./rocketsPage.js";
  * GLOBAL STATE & DOM SELECTORS
  *********************************************************/
 window.shipUpgradesAccordionOpen = false; // Global flag for accordion state
+// Track open/closed state of each stratagem category accordion
+window.categoryOpenState = {};
 
 // Tab elements and page containers
 const tabStratagems = document.getElementById("tabStratagems");
@@ -277,8 +279,14 @@ function renderTables(stratagems, selectedUpgrades) {
     iconSpan.textContent = "–";
     header.appendChild(iconSpan);
 
+    const isOpen =
+      window.categoryOpenState.hasOwnProperty(cat)
+        ? window.categoryOpenState[cat]
+        : true;
+
     const content = document.createElement("div");
-    content.classList.add("category-content", "open");
+    content.classList.add("category-content");
+    if (isOpen) content.classList.add("open");
 
     const table = document.createElement("table");
     const thead = document.createElement("thead");
@@ -369,7 +377,9 @@ function renderTables(stratagems, selectedUpgrades) {
     // Collapsible category table logic.
     header.addEventListener("click", () => {
       content.classList.toggle("open");
-      if (content.classList.contains("open")) {
+      const opened = content.classList.contains("open");
+      window.categoryOpenState[cat] = opened;
+      if (opened) {
         iconSpan.textContent = "–";
         content.style.maxHeight = content.scrollHeight + "px";
       } else {
@@ -377,7 +387,12 @@ function renderTables(stratagems, selectedUpgrades) {
         content.style.maxHeight = 0;
       }
     });
-    content.style.maxHeight = content.scrollHeight + "px";
+    if (isOpen) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      iconSpan.textContent = "+";
+      content.style.maxHeight = 0;
+    }
   });
 }
 
@@ -436,6 +451,9 @@ tabStratagems.addEventListener("click", () => {
   enforceProgressionOnAllCheckboxes();
   refreshUpgradesVisibility("stratagems");
 
+  // Reset category accordion state so all categories start expanded
+  window.categoryOpenState = {};
+
   if (window.shipUpgradesAccordionOpen) {
     openAccordion(globalAccordionHeader, globalAccordionContent);
   } else {
@@ -471,6 +489,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loadSelectedUpgrades();
   enforceProgressionOnAllCheckboxes();
   refreshUpgradesVisibility("stratagems");
+  window.categoryOpenState = {}; // Default all stratagem categories open
   closeAccordion(globalAccordionHeader, globalAccordionContent);
   window.shipUpgradesAccordionOpen = false;
   document.getElementById("searchInput").addEventListener("input", updateUI);
