@@ -31,8 +31,20 @@
     <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search stratagems (by name or category)..." />
-      <label id="fluctuationsLabel">
-        <input type="checkbox" id="orbitalFluctuationsCheckbox" /> Orbital Fluctuations (+25% All Cooldowns) </label>
+    </div>
+    <!-- Mission Configuration Section -->
+    <div class="mission-config">
+      <h2>Mission Configuration</h2>
+      <div class="config-row">
+        <label>
+          <input type="checkbox" id="orbitalFluctuationsCheckbox" /> Orbital Fluctuations (+25% All Cooldowns)
+        </label>
+      </div>
+      <div class="config-row">
+        <label>
+          <input type="checkbox" id="dssPresenceCheckbox" /> DSS Presence (-50% Exosuit Cooldown)
+        </label>
+      </div>
     </div>
     <!-- Container for Stratagem Tables -->
     <div id="stratagemTablesContainer"></div>

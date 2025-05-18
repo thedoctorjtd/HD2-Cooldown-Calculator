@@ -13,7 +13,7 @@ This tool lets you select ship upgrades, toggle orbital fluctuations, and see ca
 - Calculate cooldowns for all stratagems.
 - Calculate maximum AT rocket usage.
 - Select ship upgrades that affect cooldown times.
-- Choose mission configuration options for rockets to tailor the results.
+- Choose mission configuration options for stratagems and rockets to tailor the results.
 
 
 ## Contributing
