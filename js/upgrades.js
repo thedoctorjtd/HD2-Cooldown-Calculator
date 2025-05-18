@@ -80,13 +80,13 @@ export const ALL_UPGRADES = [
     pages: ["stratagems"],
   },
 
-  // Bridge (Stratagems only)
+  // Bridge
   {
     id: "Bridge-1",
     category: "Bridge",
     shortName: "Morale Augmentation",
     description: "All stratagem cooldowns -5%",
-    pages: ["stratagems"],
+    pages: ["stratagems", "rockets"],
   },
 
   // Engineering Bay
