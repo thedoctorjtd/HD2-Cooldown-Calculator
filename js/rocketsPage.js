@@ -85,9 +85,7 @@ export function updateRocketsUI() {
 
     // Base resupply cooldown (modified if Engineering Bay upgrade applied).
     let baseResupplyCd = 180;
-    if (effects.sentryEmplacementResupplyCooldownMult < 1) {
-      baseResupplyCd *= 0.9;
-    }
+    baseResupplyCd *= effects.sentryEmplacementResupplyCooldownMult;
     if (orbitalFluctuations) baseResupplyCd *= 1.25;
 
     let resuppliesPerPod = resupplyCount;
