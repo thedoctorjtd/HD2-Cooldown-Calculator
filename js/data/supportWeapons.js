@@ -90,6 +90,11 @@ const baseSuppWeapons = [
     baseCooldown: 480,
     type: "unlimited",
   },
+  {
+    name: "CQC-1 One True Flag",
+    baseCooldown: 480,
+    type: "unlimited",
+  },
 ];
 
 export const SUPPORT_WEAPONS = baseSuppWeapons.map((weapon) => ({
