@@ -49,7 +49,10 @@ export function updateRocketsUI() {
     const callInDelay = effects.streamlinedLaunch ? 0 : weapon.stratCallInTime;
     let baseCallTime = callInDelay + weapon.travelTime;
     if (complexPlotting) baseCallTime *= 1.5;
-    let scd = effects.supportWeaponCooldownMult * weapon.stratCooldown;
+    let scd =
+      weapon.stratCooldown *
+      effects.supportWeaponCooldownMult *
+      effects.universalCooldownMult;
     if (orbitalFluctuations) scd *= 1.25;
 
     let time = baseCallTime;
@@ -84,7 +87,7 @@ export function updateRocketsUI() {
     const shotReload = weapon.reloadTime * payrollMult;
 
     // Base resupply cooldown (modified if Engineering Bay upgrade applied).
-    let baseResupplyCd = 180;
+    let baseResupplyCd = 180 * effects.universalCooldownMult;
     if (effects.sentryEmplacementResupplyCooldownMult < 1) {
       baseResupplyCd *= 0.9;
     }
