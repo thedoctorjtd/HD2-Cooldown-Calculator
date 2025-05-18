@@ -188,6 +188,11 @@ function isOrbitalFluctuationsActive() {
   return document.getElementById("orbitalFluctuationsCheckbox").checked;
 }
 
+function isDssPresenceActive() {
+  const cb = document.getElementById("dssPresenceCheckbox");
+  return cb ? cb.checked : false;
+}
+
 function calculateCooldown(stratagem, effects) {
   if (stratagem.type === "eagle") {
     let cd =
@@ -207,6 +212,13 @@ function calculateCooldown(stratagem, effects) {
       cd *= effects.orbitalCooldownMult;
     } else if (["sentries", "emplacements", "miscellaneous"].includes(cat)) {
       cd *= effects.sentryEmplacementResupplyCooldownMult;
+    }
+    if (
+      isDssPresenceActive() &&
+      cat === "vehicles" &&
+      stratagem.name.toLowerCase().includes("exosuit")
+    ) {
+      cd *= 0.5;
     }
     if (isOrbitalFluctuationsActive()) cd *= 1.25;
     return Math.round(cd);

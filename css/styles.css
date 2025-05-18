@@ -173,7 +173,7 @@ input[type="checkbox"] {
 .search-bar {
   margin: 1rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -190,17 +190,6 @@ input[type="checkbox"] {
 
 .search-bar input::placeholder {
   color: #999;
-}
-
-#fluctuationsLabel {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 0.5rem;
-}
-
-#orbitalFluctuationsCheckbox {
-  margin: 0;
 }
 
 footer {
