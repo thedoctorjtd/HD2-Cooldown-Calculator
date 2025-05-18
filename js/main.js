@@ -473,5 +473,6 @@ window.addEventListener("DOMContentLoaded", () => {
   refreshUpgradesVisibility("stratagems");
   closeAccordion(globalAccordionHeader, globalAccordionContent);
   window.shipUpgradesAccordionOpen = false;
+  document.getElementById("searchInput").addEventListener("input", updateUI);
   updateUI();
 });
