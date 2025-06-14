@@ -16,6 +16,11 @@ const baseBackpacks = [
     type: "unlimited",
   },
   {
+    name: '"Guard Dog" K-9',
+    baseCooldown: 480,
+    type: "unlimited",
+  },
+  {
     name: "SH-32 Shield Generator Pack",
     baseCooldown: 480,
     type: "unlimited",

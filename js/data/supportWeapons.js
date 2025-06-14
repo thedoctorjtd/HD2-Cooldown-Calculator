@@ -95,6 +95,11 @@ const baseSuppWeapons = [
     baseCooldown: 480,
     type: "unlimited",
   },
+  {
+    name: "GL-52 De-Escalator",
+    baseCooldown: 480,
+    type: "unlimited",
+  },
 ];
 
 export const SUPPORT_WEAPONS = baseSuppWeapons.map((weapon) => ({
