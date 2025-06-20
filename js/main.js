@@ -5,6 +5,7 @@ import {
   enforceUpgradeProgressions,
 } from "./upgrades.js";
 import { updateRocketsUI } from "./rocketsPage.js";
+import { openAccordion, closeAccordion } from "./utils/domUtils.js";
 
 /*********************************************************
  * GLOBAL STATE & DOM SELECTORS
@@ -30,17 +31,6 @@ const globalAccordionContent = document.getElementById(
 /*********************************************************
  * ACCORDION OPEN/CLOSE HELPERS
  *********************************************************/
-function openAccordion(headerEl, contentEl) {
-  headerEl.classList.add("active");
-  contentEl.classList.add("open");
-  contentEl.style.maxHeight = contentEl.scrollHeight + "px";
-}
-
-function closeAccordion(headerEl, contentEl) {
-  headerEl.classList.remove("active");
-  contentEl.classList.remove("open");
-  contentEl.style.maxHeight = 0;
-}
 
 // Toggle accordion on header click.
 globalAccordionHeader.addEventListener("click", () => {
