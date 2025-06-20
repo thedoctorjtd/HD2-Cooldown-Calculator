@@ -8,7 +8,7 @@ test('Bridge-1 reduces universal cooldown by 5%', () => {
 });
 
 test('Streamlined Request reduces support weapon cooldown by 10%', () => {
-  const effects = getUpgradeEffects(['ShipModules-StreamlinedRequest']);
+  const effects = getUpgradeEffects(['AdministrationCenter-2']);
   assert.equal(effects.supportWeaponCooldownMult, 0.9);
 });
 
