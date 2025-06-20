@@ -9,6 +9,9 @@ This repository contains a small web application for calculating Helldivers 2 st
 - `js/rocketsPage.js`
   - Recalculates maximum rocket shots when mission settings or upgrades change.
   - Updates the Rockets results UI with computed values.
+- `js/rocketsCalculations.js`
+  - Pure functions for computing rocket shot counts.
+  - Exported for unit testing.
 - `js/upgrades.js`
   - Contains the master list of ship upgrades.
   - Exports utility functions such as `getUpgradeEffects` and `enforceUpgradeProgressions` used across the app.
