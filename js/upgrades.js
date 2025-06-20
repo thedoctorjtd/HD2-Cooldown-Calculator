@@ -4,21 +4,7 @@
 export const ALL_UPGRADES = [
   // Patriotic Administration Center
   {
-    id: "ShipModules-StreamlinedRequest",
-    category: "Patriotic Administration Center",
-    shortName: "Streamlined Request Process",
-    description: "Decreases Support Weapon cooldown by 10%",
-    pages: ["stratagems", "rockets"],
-  },
-  {
-    id: "ShipModules-HandCarts",
-    category: "Patriotic Administration Center",
-    shortName: "Hand Carts",
-    description: "Decreases Backpack stratagem cooldown by 10%",
-    pages: ["stratagems"],
-  },
-  {
-    id: "ShipModules-Donation",
+    id: "AdministrationCenter-1",
     category: "Patriotic Administration Center",
     shortName: "Donation Access License",
     description:
@@ -26,7 +12,21 @@ export const ALL_UPGRADES = [
     pages: ["rockets"],
   },
   {
-    id: "ShipModules-Superior",
+    id: "AdministrationCenter-2",
+    category: "Patriotic Administration Center",
+    shortName: "Streamlined Request Process",
+    description: "Decreases Support Weapon cooldown by 10%",
+    pages: ["stratagems", "rockets"],
+  },
+  {
+    id: "AdministrationCenter-3",
+    category: "Patriotic Administration Center",
+    shortName: "Hand Carts",
+    description: "Decreases Backpack stratagem cooldown by 10%",
+    pages: ["stratagems"],
+  },
+  {
+    id: "AdministrationCenter-4",
     category: "Patriotic Administration Center",
     shortName: "Superior Packing Methodology",
     description:
@@ -34,7 +34,7 @@ export const ALL_UPGRADES = [
     pages: ["rockets"],
   },
   {
-    id: "ShipModules-Payroll",
+    id: "AdministrationCenter-5",
     category: "Patriotic Administration Center",
     shortName: "Payroll Management System",
     description: "Reduces reload time for all backpack support weapons by 10%",
@@ -98,7 +98,7 @@ export const ALL_UPGRADES = [
     pages: ["stratagems", "rockets"],
   },
   {
-    id: "ShipModules-StreamlinedLaunch",
+    id: "EngineeringBay-2",
     category: "Engineering Bay",
     shortName: "Streamlined Launch Process",
     description: "Removes call-in delay for support weapon stratagems",
@@ -111,16 +111,16 @@ export const ALL_UPGRADES = [
  ************************************/
 export const upgradeProgressions = {
   PatrioticAdministrationCenter: [
-    "ShipModules-StreamlinedRequest",
-    "ShipModules-HandCarts",
-    "ShipModules-Donation",
-    "ShipModules-Superior",
-    "ShipModules-Payroll",
+    "AdministrationCenter-1",
+    "AdministrationCenter-2",
+    "AdministrationCenter-3",
+    "AdministrationCenter-4",
+    "AdministrationCenter-5",
   ],
   OrbitalCannons: ["OrbitalCannons-1"],
   Hangar: ["Hangar-1", "Hangar-2", "Hangar-3", "Hangar-4"],
   Bridge: ["Bridge-1"],
-  EngineeringBay: ["EngineeringBay-1", "ShipModules-StreamlinedLaunch"],
+  EngineeringBay: ["EngineeringBay-1", "EngineeringBay-2"],
   // New rocket-only modules do not require linear progression
 };
 
@@ -152,19 +152,19 @@ export function getUpgradeEffects(selectedUpgrades) {
   selectedUpgrades.forEach((upg) => {
     switch (upg) {
       // Patriotic Administration Center
-      case "ShipModules-StreamlinedRequest":
+      case "AdministrationCenter-2":
         effects.supportWeaponCooldownMult *= 0.9;
         break;
-      case "ShipModules-HandCarts":
+      case "AdministrationCenter-3":
         effects.backpackCooldownMult *= 0.9;
         break;
-      case "ShipModules-Donation":
+      case "AdministrationCenter-1":
         effects.donationAccess = true;
         break;
-      case "ShipModules-Superior":
+      case "AdministrationCenter-4":
         effects.superiorPacking = true;
         break;
-      case "ShipModules-Payroll":
+      case "AdministrationCenter-5":
         effects.payrollReloadMult *= 0.9;
         break;
 
@@ -198,7 +198,7 @@ export function getUpgradeEffects(selectedUpgrades) {
         break;
 
       // Streamlined Launch
-      case "ShipModules-StreamlinedLaunch":
+      case "EngineeringBay-2":
         effects.streamlinedLaunch = true;
         break;
 
