@@ -6,6 +6,11 @@ import {
 } from "./upgrades.js";
 import { updateRocketsUI } from "./rocketsPage.js";
 import { openAccordion, closeAccordion } from "./utils/domUtils.js";
+import {
+  loadSelectedUpgrades,
+  saveSelectedUpgrades,
+  getSelectedUpgrades,
+} from "./storage.js";
 
 /*********************************************************
  * GLOBAL STATE & DOM SELECTORS
@@ -119,42 +124,8 @@ function refreshUpgradesVisibility(activeTab) {
 
 /*********************************************************
  * LOCAL STORAGE HANDLING FOR UPGRADES
+ * Implemented in storage.js
  *********************************************************/
-function loadSelectedUpgrades() {
-  const saved = localStorage.getItem("selectedUpgrades");
-  if (!saved) return;
-  const selected = JSON.parse(saved);
-  document
-    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
-    .forEach((cb) => {
-      const id = cb.getAttribute("data-upgrade-id");
-      cb.checked = selected.includes(id);
-    });
-}
-
-function saveSelectedUpgrades() {
-  const selected = [];
-  document
-    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
-    .forEach((cb) => {
-      if (cb.checked) {
-        selected.push(cb.getAttribute("data-upgrade-id"));
-      }
-    });
-  localStorage.setItem("selectedUpgrades", JSON.stringify(selected));
-}
-
-function getSelectedUpgrades() {
-  const selected = [];
-  document
-    .querySelectorAll('input[type="checkbox"][data-upgrade-id]')
-    .forEach((cb) => {
-      if (cb.checked) {
-        selected.push(cb.getAttribute("data-upgrade-id"));
-      }
-    });
-  return selected;
-}
 
 function enforceProgressionOnAllCheckboxes() {
   document.querySelectorAll("input[data-upgrade-id]").forEach((cb) => {
