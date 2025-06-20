@@ -50,8 +50,6 @@ export function updateRocketsUI() {
     resupplyCount,
   };
 
-
-
   /***********************
    * BUILD RESULTS TABLE
    ***********************/

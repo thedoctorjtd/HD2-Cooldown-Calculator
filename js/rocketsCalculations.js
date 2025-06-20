@@ -1,8 +1,11 @@
 // Computation utilities for rocket shot counts
-// Extracted from rocketsPage.js for reusability and testing
 
 export function computeExpendableShots(weapon, totalTime, options = {}) {
-  const { effects = {}, complexPlotting = false, orbitalFluctuations = false } = options;
+  const {
+    effects = {},
+    complexPlotting = false,
+    orbitalFluctuations = false,
+  } = options;
   const effectiveRounds =
     weapon.weaponDamage < 2000 ? Math.floor(weapon.rounds / 2) : weapon.rounds;
   const callInDelay = effects.streamlinedLaunch ? 0 : weapon.stratCallInTime;
@@ -44,7 +47,9 @@ export function computeBackpackShots(weapon, totalTime, options = {}) {
   const payrollMult = effects.payrollReloadMult ?? 1;
 
   const initialAmmo = donation ? weapon.rounds : Math.ceil(weapon.rounds / 2);
-  const refillAmmo = superior ? weapon.rounds - 1 : Math.floor(weapon.rounds / 2);
+  const refillAmmo = superior
+    ? weapon.rounds - 1
+    : Math.floor(weapon.rounds / 2);
   const shotReload = weapon.reloadTime * payrollMult;
 
   let baseResupplyCd = 180 * (effects.universalCooldownMult ?? 1);
@@ -85,7 +90,7 @@ export function computeEnergyShots(weapon, totalTime, options = {}) {
   const {
     effects = {},
     complexPlotting = false,
-    planetWeather = 'Normal',
+    planetWeather = "Normal",
   } = options;
   const callInTime = effects.streamlinedLaunch ? 0 : weapon.stratCallInTime;
   let totalCall = callInTime + weapon.travelTime;
@@ -93,9 +98,9 @@ export function computeEnergyShots(weapon, totalTime, options = {}) {
   if (totalCall > totalTime) return 0;
 
   let baseCd = weapon.reloadTime;
-  if (planetWeather === 'Hot') {
+  if (planetWeather === "Hot") {
     baseCd += 2.5;
-  } else if (planetWeather === 'Cold') {
+  } else if (planetWeather === "Cold") {
     baseCd = Math.max(0, baseCd - 2.5);
   }
   let time = totalCall;
