@@ -16,7 +16,7 @@ This repository contains a small web application for calculating Helldivers 2 st
   - Contains the master list of ship upgrades.
   - Exports utility functions such as `getUpgradeEffects` and `enforceUpgradeProgressions` used across the app.
 - `js/utils/`
-  - Directory for reusable helpers like DOM manipulation utilities.
+  - Directory for reusable helpers like DOM manipulation utilities and local storage management.
 
 ## Testing
 

@@ -10,7 +10,7 @@ import {
   loadSelectedUpgrades,
   saveSelectedUpgrades,
   getSelectedUpgrades,
-} from "./storage.js";
+} from "./utils/storage.js";
 
 /*********************************************************
  * GLOBAL STATE & DOM SELECTORS
@@ -123,8 +123,7 @@ function refreshUpgradesVisibility(activeTab) {
 }
 
 /*********************************************************
- * LOCAL STORAGE HANDLING FOR UPGRADES
- * Implemented in storage.js
+ * SHIP MODULE PROGRESSION ENFORCEMENT
  *********************************************************/
 
 function enforceProgressionOnAllCheckboxes() {
