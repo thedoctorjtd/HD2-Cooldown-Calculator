@@ -1,10 +1,12 @@
-import { ROCKETS } from "./data/rockets.js";
+import { loadJson } from "./utils/dataLoader.js";
 import { getUpgradeEffects } from "./upgrades.js";
 import {
   computeExpendableShots,
   computeBackpackShots,
   computeEnergyShots,
 } from "./rocketsCalculations.js";
+
+export const ROCKETS = await loadJson('data/rockets.json');
 
 /*********************************************************
  * UPDATE ROCKETS UI
