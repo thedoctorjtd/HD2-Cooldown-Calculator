@@ -17,7 +17,7 @@ import {
  *********************************************************/
 export const uiState = {
   shipUpgradesAccordionOpen: false,
-  categoryOpenState: {}
+  categoryOpenState: {},
 };
 // Tab elements and page containers
 const tabStratagems = document.getElementById("tabStratagems");
@@ -239,10 +239,9 @@ function renderTables(stratagems, selectedUpgrades) {
     iconSpan.textContent = "–";
     header.appendChild(iconSpan);
 
-    const isOpen =
-      uiState.categoryOpenState.hasOwnProperty(cat)
-        ? uiState.categoryOpenState[cat]
-        : true;
+    const isOpen = uiState.categoryOpenState.hasOwnProperty(cat)
+      ? uiState.categoryOpenState[cat]
+      : true;
 
     const content = document.createElement("div");
     content.classList.add("category-content");
