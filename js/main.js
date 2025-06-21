@@ -1,4 +1,4 @@
-import { STRATAGEMS } from "./data/allStratagems.js";
+import { loadAllStratagems } from "./utils/dataLoader.js";
 import { enforceUpgradeProgressions } from "./upgrades.js";
 import { ALL_UPGRADES } from "./upgradesData.js";
 import { updateRocketsUI } from "./rocketsPage.js";
@@ -9,6 +9,8 @@ import {
   saveSelectedUpgrades,
   getSelectedUpgrades,
 } from "./utils/storage.js";
+
+let STRATAGEMS = [];
 
 /*********************************************************
  * GLOBAL STATE & DOM SELECTORS
@@ -207,7 +209,8 @@ tabRockets.addEventListener("click", () => {
 /*********************************************************
  * INITIALIZATION
  *********************************************************/
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+  STRATAGEMS = await loadAllStratagems();
   renderAllUpgrades();
   loadSelectedUpgrades();
   enforceProgressionOnAllCheckboxes();

@@ -1,5 +1,5 @@
 # AGENTS Instructions
-This repository contains a small web application for calculating Helldivers 2 stratagem and rocket cooldowns. JavaScript modules live under `js/` and data files under `js/data/`. The site can be opened directly via `index.html`.
+This repository contains a small web application for calculating Helldivers 2 stratagem and rocket cooldowns. JavaScript modules live under `js/` and JSON data lives under `data/`. The site can be opened directly via `index.html`.
 
 ## Key JavaScript Files
 - `js/main.js`
@@ -14,8 +14,10 @@ This repository contains a small web application for calculating Helldivers 2 st
   - Upgrade logic and utility functions.
 - `js/upgradesData.js`
   - Data for ship upgrades.
-- `js/data/`
-  - Contains categorized data modules for stratagems, weapons, vehicles, etc.
+- `data/`
+  - JSON files for stratagem, weapon, and vehicle data. Loaded at runtime via `loadJson` in `js/utils/dataLoader.js`.
+- `js/utils/dataLoader.js`
+  - Provides `loadJson` for fetching JSON in browsers or Node and `loadAllStratagems` which combines category files.
 - `js/utils/`
   - Reusable helpers (e.g., DOM utilities in `domUtils.js`, local storage in `storage.js`).
 
