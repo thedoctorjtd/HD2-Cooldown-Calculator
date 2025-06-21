@@ -1,4 +1,6 @@
 import { ALL_UPGRADES, upgradeProgressions } from "./upgradesData.js";
+// ALL_UPGRADES is imported from this file by main.js
+// Although it is not used here, it needs to be imported so it can be passed to main.js
 
 /************************************
  * CALCULATE UPGRADE EFFECTS

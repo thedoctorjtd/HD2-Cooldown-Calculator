@@ -124,5 +124,4 @@ export const upgradeProgressions = {
   Hangar: ["Hangar-1", "Hangar-2", "Hangar-3", "Hangar-4"],
   Bridge: ["Bridge-1"],
   EngineeringBay: ["EngineeringBay-1", "EngineeringBay-2"],
-  // New rocket-only modules do not require linear progression
 };
