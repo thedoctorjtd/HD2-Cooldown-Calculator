@@ -1,4 +1,3 @@
-// Stratagems page logic extracted from main.js
 import { getUpgradeEffects } from "./upgrades.js";
 
 const CATEGORIES_ORDER = [
