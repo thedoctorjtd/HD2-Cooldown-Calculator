@@ -1,25 +1,25 @@
 # AGENTS Instructions
-
 This repository contains a small web application for calculating Helldivers 2 stratagem and rocket cooldowns. JavaScript modules live under `js/` and data files under `js/data/`. The site can be opened directly via `index.html`.
 
 ## Key JavaScript Files
-
 - `js/main.js`
-  - Initializes the page, handles tab switching, and renders the global upgrades accordion.
-  - Persists selected upgrades in `localStorage` and exposes helper functions for saving/loading them.
+  - Main entry point. Initializes the page, handles tab switching, and manages global upgrades.
 - `js/rocketsPage.js`
-  - Recalculates maximum rocket shots when mission settings or upgrades change.
-  - Updates the Rockets results UI with computed values.
+  - Handles Rockets tab UI and logic, including recalculating and displaying rocket shot counts.
+- `js/stratagemsPage.js`
+  - Handles Stratagems tab UI and logic.
 - `js/rocketsCalculations.js`
-  - Pure functions for computing rocket shot counts.
+  - Pure functions for rocket shot calculations.
 - `js/upgrades.js`
-  - Contains the master list of ship upgrades.
-  - Exports utility functions such as `getUpgradeEffects` and `enforceUpgradeProgressions` used across the app.
+  - Upgrade logic and utility functions.
+- `js/upgradesData.js`
+  - Data for ship upgrades.
+- `js/data/`
+  - Contains categorized data modules for stratagems, weapons, vehicles, etc.
 - `js/utils/`
-  - Directory for reusable helpers like DOM manipulation utilities and local storage management.
+  - Reusable helpers (e.g., DOM utilities in `domUtils.js`, local storage in `storage.js`).
 
 ## Testing
-
 - Ensure you have Node (version 20 or later recommended).
 - Run tests with:
   ```bash
@@ -28,12 +28,9 @@ This repository contains a small web application for calculating Helldivers 2 st
   This executes the Node `--test` suite found in the `tests/` directory. All tests should pass before committing changes.
 
 ## Development Tips
-
 - JavaScript uses two space indentation and ECMAScript modules (`type: "module"`).
 - No build step is required; HTML loads scripts directly.
 - Assets reside in `images/` and styles in `css/`.
-- See `README.md` for general project information and contributing guidelines.
 
 ## Running Locally
-
 Open `index.html` in a browser or serve the directory with a simple HTTP server (e.g., `npx serve`) to view the app locally.
