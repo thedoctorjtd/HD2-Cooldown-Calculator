@@ -209,7 +209,8 @@ tabRockets.addEventListener("click", () => {
 /*********************************************************
  * INITIALIZATION
  *********************************************************/
-window.addEventListener("DOMContentLoaded", async () => {
+
+async function init() {
   STRATAGEMS = await loadAllStratagems();
   renderAllUpgrades();
   loadSelectedUpgrades();
@@ -220,4 +221,10 @@ window.addEventListener("DOMContentLoaded", async () => {
   uiState.shipUpgradesAccordionOpen = false;
   document.getElementById("searchInput").addEventListener("input", updateUI);
   updateUI();
-});
+}
+
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}

@@ -3,7 +3,7 @@ This repository contains a small web application for calculating Helldivers 2 st
 
 ## Key JavaScript Files
 - `js/main.js`
-  - Main entry point. Loads stratagem data once the DOM is ready, initializes the page, handles tab switching, and manages global upgrades.
+  - Main entry point. Initializes the page on load, fetching stratagem data, setting up UI, and handling tab logic.
 - `js/rocketsPage.js`
   - Handles Rockets tab UI and logic, including recalculating and displaying rocket shot counts.
 - `js/stratagemsPage.js`
