@@ -4,6 +4,9 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -197,9 +200,10 @@ footer {
   color: #ccc;
   text-align: center;
   padding: 1rem;
-  margin-top: 2rem;
+  padding-top: 2rem;
   font-size: 0.9rem;
   border-top: 1px solid #444;
+  margin-top: auto;
 }
 
 footer a {
