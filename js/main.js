@@ -1,9 +1,6 @@
 import { STRATAGEMS } from "./data/allStratagems.js";
-import {
-  ALL_UPGRADES,
-  getUpgradeEffects,
-  enforceUpgradeProgressions,
-} from "./upgrades.js";
+import { getUpgradeEffects, enforceUpgradeProgressions } from "./upgrades.js";
+import { ALL_UPGRADES } from "./upgradesData.js";
 import { updateRocketsUI } from "./rocketsPage.js";
 import { openAccordion, closeAccordion } from "./utils/domUtils.js";
 import {
