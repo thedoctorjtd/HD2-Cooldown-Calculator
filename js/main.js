@@ -221,6 +221,7 @@ async function init() {
   uiState.shipUpgradesAccordionOpen = false;
   document.getElementById("searchInput").addEventListener("input", updateUI);
   updateUI();
+  document.getElementById("footer").classList.remove("hidden-until-loaded");
 }
 
 if (document.readyState === "loading") {
