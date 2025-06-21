@@ -31,6 +31,7 @@ This repository contains a small web application for calculating Helldivers 2 st
 - JavaScript uses two space indentation and ECMAScript modules (`type: "module"`).
 - No build step is required; HTML loads scripts directly.
 - Assets reside in `images/` and styles in `css/`.
+- If structural changes are made, update the documentation in AGENTS.md accordingly.
 
 ## Running Locally
 Open `index.html` in a browser or serve the directory with a simple HTTP server (e.g., `npx serve`) to view the app locally.
