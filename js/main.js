@@ -10,7 +10,7 @@ import {
   getSelectedUpgrades,
 } from "./utils/storage.js";
 
-const STRATAGEMS = await loadAllStratagems();
+let STRATAGEMS = [];
 
 /*********************************************************
  * GLOBAL STATE & DOM SELECTORS
@@ -210,6 +210,7 @@ tabRockets.addEventListener("click", () => {
  * INITIALIZATION
  *********************************************************/
 window.addEventListener("DOMContentLoaded", async () => {
+  STRATAGEMS = await loadAllStratagems();
   renderAllUpgrades();
   loadSelectedUpgrades();
   enforceProgressionOnAllCheckboxes();
