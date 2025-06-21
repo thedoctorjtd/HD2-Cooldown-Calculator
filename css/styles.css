@@ -33,7 +33,7 @@ h1 {
 .container {
   padding: 1rem;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 /* Accordion styles */
