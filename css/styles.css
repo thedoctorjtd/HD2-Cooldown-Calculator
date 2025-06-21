@@ -33,6 +33,10 @@ h1 {
   margin: auto;
 }
 
+.hidden-until-loaded {
+  visibility: hidden;
+}
+
 /* Accordion styles */
 .accordion-section {
   border: 1px solid #333333;
