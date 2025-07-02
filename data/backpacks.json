@@ -58,5 +58,11 @@
     "baseCooldown": 300,
     "type": "unlimited",
     "category": "backpacks"
+  },
+  {
+    "name": "B-100 Portable Hellbomb",
+    "baseCooldown": 300,
+    "type": "unlimited",
+    "category": "backpacks"
   }
 ]
