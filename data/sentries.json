@@ -37,7 +37,7 @@
   },
   {
     "name": "A/FLAM-40 Flame Sentry",
-    "baseCooldown": 150,
+    "baseCooldown": 100,
     "type": "unlimited",
     "category": "sentries"
   }
