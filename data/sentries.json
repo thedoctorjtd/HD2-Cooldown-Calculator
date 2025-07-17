@@ -40,5 +40,11 @@
     "baseCooldown": 100,
     "type": "unlimited",
     "category": "sentries"
+  },
+  {
+    "name": "A/LAS-98 Laser Sentry",
+    "baseCooldown": 150,
+    "type": "unlimited",
+    "category": "sentries"
   }
 ]
