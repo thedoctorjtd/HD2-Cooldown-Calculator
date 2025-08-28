@@ -4,7 +4,7 @@ import {
   computeExpendableShots,
   computeBackpackShots,
   computeEnergyShots,
-} from "../js/rocketsCalculations.js";
+} from "../svelte/src/lib/rockets/calculations.ts";
 
 test("computeExpendableShots basic scenario", () => {
   const weapon = {
