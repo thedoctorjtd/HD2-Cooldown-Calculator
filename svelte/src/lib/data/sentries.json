@@ -1,0 +1,50 @@
+[
+  {
+    "name": "A/MG-43 Machine Gun Sentry",
+    "baseCooldown": 90,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/G-16 Gatling Sentry",
+    "baseCooldown": 150,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/M-12 Mortar Sentry",
+    "baseCooldown": 180,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/M-23 EMS Mortar Sentry",
+    "baseCooldown": 180,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/AC-8 Autocannon Sentry",
+    "baseCooldown": 150,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/MLS-4X Rocket Sentry",
+    "baseCooldown": 150,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/FLAM-40 Flame Sentry",
+    "baseCooldown": 100,
+    "type": "unlimited",
+    "category": "sentries"
+  },
+  {
+    "name": "A/LAS-98 Laser Sentry",
+    "baseCooldown": 150,
+    "type": "unlimited",
+    "category": "sentries"
+  }
+]

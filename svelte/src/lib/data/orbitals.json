@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Orbital Gatling Barrage",
+    "baseCooldown": 70,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Airburst Strike",
+    "baseCooldown": 100,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital 120mm HE Barrage",
+    "baseCooldown": 180,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital 380mm HE Barrage",
+    "baseCooldown": 240,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Walking Barrage",
+    "baseCooldown": 240,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Laser",
+    "baseCooldown": 300,
+    "type": "limited",
+    "maxUses": 3,
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Napalm Barrage",
+    "baseCooldown": 240,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Railcannon Strike",
+    "baseCooldown": 210,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Precision Strike",
+    "baseCooldown": 90,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Gas Strike",
+    "baseCooldown": 75,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital EMS Strike",
+    "baseCooldown": 75,
+    "type": "unlimited",
+    "category": "orbitals"
+  },
+  {
+    "name": "Orbital Smoke Strike",
+    "baseCooldown": 100,
+    "type": "unlimited",
+    "category": "orbitals"
+  }
+]

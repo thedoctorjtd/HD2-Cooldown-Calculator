@@ -1,0 +1,57 @@
+[
+  {
+    "name": "EAT-17 Expendable Anti-Tank",
+    "type": "Expendable",
+    "stratCooldown": 70,
+    "stratCallInTime": 2,
+    "reloadTime": 1,
+    "weaponChargeUp": 1,
+    "weaponDamage": 2000,
+    "rounds": 2,
+    "travelTime": 4.75
+  },
+  {
+    "name": "MLS-4X Commando",
+    "type": "Expendable",
+    "stratCooldown": 120,
+    "stratCallInTime": 3,
+    "reloadTime": 1,
+    "weaponChargeUp": 0,
+    "weaponDamage": 1100,
+    "rounds": 4,
+    "travelTime": 4.75
+  },
+  {
+    "name": "GR-8 Recoilless Rifle",
+    "type": "Backpack",
+    "stratCooldown": 480,
+    "stratCallInTime": 3,
+    "reloadTime": 3.6,
+    "weaponChargeUp": 0,
+    "weaponDamage": 3200,
+    "rounds": 6,
+    "travelTime": 4.75
+  },
+  {
+    "name": "FAF-14 Spear",
+    "type": "Backpack",
+    "stratCooldown": 480,
+    "stratCallInTime": 3,
+    "reloadTime": 3.6,
+    "weaponChargeUp": 0,
+    "weaponDamage": 4000,
+    "rounds": 4,
+    "travelTime": 4.75
+  },
+  {
+    "name": "LAS-99 Quasar Cannon",
+    "type": "Energy",
+    "stratCooldown": 480,
+    "stratCallInTime": 3,
+    "reloadTime": 15,
+    "weaponChargeUp": 3,
+    "weaponDamage": 2000,
+    "rounds": 1,
+    "travelTime": 4.75
+  }
+]
