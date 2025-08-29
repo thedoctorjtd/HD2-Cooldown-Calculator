@@ -1,15 +1,16 @@
 {
   // Cloudflare Workers config for HD2 Cooldowns (SvelteKit static build)
   // Uses Workers Static Assets (not Pages) and a Custom Domain.
-  "name": "hd2-cooldowns",
+  "name": "hd2-cooldown-calculator",
   "compatibility_date": "2025-08-29",
 
   // Do not create a workers.dev route; we will attach a custom domain instead.
   "workers_dev": false,
 
-  // Run the repo build before deploy so the assets exist at svelte/build
+  // Build the Svelte app in its subfolder, ensuring deps are installed
   "build": {
-    "command": "npm run build"
+    "cwd": "svelte",
+    "command": "npm ci --no-audit --no-fund && npm run build"
   },
 
   // Serve the pre-rendered static site produced by SvelteKit adapter-static
@@ -29,4 +30,3 @@
     }
   ]
 }
-
