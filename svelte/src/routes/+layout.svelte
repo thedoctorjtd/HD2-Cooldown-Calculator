@@ -44,6 +44,7 @@
   <button
     type="button"
     class="accordion-header"
+    class:active={upgradesOpen}
     onclick={() => (upgradesOpen = !upgradesOpen)}
   >
     <h2>Select Your Ship Upgrades</h2>
