@@ -30,9 +30,10 @@ Legacy directories (`js/`, `css/`, `data/`, `index.html`) are removed as part of
 
 ## Testing
 - Ensure Node 20+ is installed.
-- Run logic tests:
+- Run logic tests and build to check for errors:
   ```bash
   npm test
+  npm run build
   ```
   Tests import TypeScript directly using `tsx`, and validate pure functions in `svelte/src/lib`.
 
