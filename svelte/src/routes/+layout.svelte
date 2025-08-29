@@ -83,12 +83,14 @@
   {@render children?.()}
 </main>
 
-<footer id="footer" class:hidden-until-loaded={!isError}>
-  <p>
-    Made by <strong>theDoctor</strong> |
-    <a href="https://github.com/thedoctorjtd/HD2-Cooldown-Calculator" target="_blank">GitHub</a>
-  </p>
-  <p>
-    Helldivers™ is a trademark of Arrowhead Game Studios. This app is fan-made and unofficial.
-  </p>
-</footer>
+{#if !isError}
+  <footer id="footer" class:hidden-until-loaded={!isError}>
+    <p>
+      Made by <strong>theDoctor</strong> |
+      <a href="https://github.com/thedoctorjtd/HD2-Cooldown-Calculator" target="_blank">GitHub</a>
+    </p>
+    <p>
+      Helldivers™ is a trademark of Arrowhead Game Studios. This app is fan-made and unofficial.
+    </p>
+  </footer>
+{/if}
