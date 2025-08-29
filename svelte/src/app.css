@@ -1,3 +1,7 @@
+@tailwind components;
+@tailwind utilities;
+
+/* Legacy styles ported from css/styles.css to match original UI */
 body {
   background-color: #1a1a1a;
   color: #f0f0f0;
@@ -51,10 +55,13 @@ h1 {
   padding: 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   justify-content: center; /* Center the content horizontally */
   text-align: center; /* Center the text within the header */
   flex-direction: column; /* Stack the title and icon vertically */
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
 }
 
 .accordion-header h2 {
@@ -68,7 +75,7 @@ h1 {
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease-out;
+  transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
   padding: 0 1rem;
 }
 
@@ -78,7 +85,7 @@ h1 {
 }
 
 .upgrade-category {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* modest gap between sections */
 }
 
 .upgrade-category h3 {
@@ -86,7 +93,12 @@ h1 {
 }
 
 .upgrade-row {
+  display: block; /* each upgrade on its own line */
   margin: 0.25rem 0;
+}
+
+.upgrade-desc {
+  color: #ccc;
 }
 
 /* Category section container */
@@ -111,6 +123,10 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
 }
 
 .category-header:hover {
@@ -126,8 +142,9 @@ h1 {
 /* The collapsible table container */
 .category-content {
   overflow: hidden;
-  transition: max-height 0.25s ease-out;
+  transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
   padding: 0 1rem;
+  will-change: max-height, padding;
 }
 
 .category-content.open {
@@ -231,6 +248,56 @@ footer a:hover {
   font-size: 1rem;
   margin: 0 0.5rem;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tab.active {
+  background-color: #ffc107;
+  color: #1a1a1a;
+}
+
+/* Mission configuration */
+.mission-config {
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.config-row {
+  margin-bottom: 0.5rem;
+}
+
+.config-row label {
+  margin-right: 0.5rem;
+}
+
+.disclaimer {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Tab styles */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.tab {
+  background-color: #333;
+  color: #ffc107;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .tab.active {

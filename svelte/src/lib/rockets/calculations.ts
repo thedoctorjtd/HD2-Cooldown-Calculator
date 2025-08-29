@@ -1,6 +1,34 @@
-// Computation utilities for rocket shot counts
+// Computation utilities for rocket shot counts (TypeScript)
 
-export function computeExpendableShots(weapon, totalTime, options = {}) {
+export interface Effects {
+  universalCooldownMult?: number;
+  supportWeaponCooldownMult?: number;
+  sentryEmplacementResupplyCooldownMult?: number;
+  donationAccess?: boolean;
+  superiorPacking?: boolean;
+  payrollReloadMult?: number;
+  streamlinedLaunch?: boolean;
+}
+
+export interface ExpendableWeapon {
+  weaponDamage: number;
+  rounds: number;
+  stratCallInTime: number;
+  travelTime: number;
+  stratCooldown: number;
+}
+
+export interface ExpendableOptions {
+  effects?: Effects;
+  complexPlotting?: boolean;
+  orbitalFluctuations?: boolean;
+}
+
+export function computeExpendableShots(
+  weapon: ExpendableWeapon,
+  totalTime: number,
+  options: ExpendableOptions = {}
+): number {
   const {
     effects = {},
     complexPlotting = false,
@@ -30,7 +58,25 @@ export function computeExpendableShots(weapon, totalTime, options = {}) {
   return shots;
 }
 
-export function computeBackpackShots(weapon, totalTime, options = {}) {
+export interface BackpackWeapon {
+  stratCallInTime: number;
+  travelTime: number;
+  rounds: number;
+  reloadTime: number;
+}
+
+export interface BackpackOptions {
+  effects?: Effects;
+  complexPlotting?: boolean;
+  orbitalFluctuations?: boolean;
+  resupplyCount?: number;
+}
+
+export function computeBackpackShots(
+  weapon: BackpackWeapon,
+  totalTime: number,
+  options: BackpackOptions = {}
+): number {
   const {
     effects = {},
     complexPlotting = false,
@@ -86,11 +132,30 @@ export function computeBackpackShots(weapon, totalTime, options = {}) {
   return shots;
 }
 
-export function computeEnergyShots(weapon, totalTime, options = {}) {
+export interface EnergyWeapon {
+  stratCallInTime: number;
+  travelTime: number;
+  reloadTime: number;
+  weaponChargeUp: number;
+}
+
+export type Weather = 'Normal' | 'Hot' | 'Cold';
+
+export interface EnergyOptions {
+  effects?: Effects;
+  complexPlotting?: boolean;
+  planetWeather?: Weather;
+}
+
+export function computeEnergyShots(
+  weapon: EnergyWeapon,
+  totalTime: number,
+  options: EnergyOptions = {}
+): number {
   const {
     effects = {},
     complexPlotting = false,
-    planetWeather = "Normal",
+    planetWeather = 'Normal',
   } = options;
   const callInTime = effects.streamlinedLaunch ? 0 : weapon.stratCallInTime;
   let totalCall = callInTime + weapon.travelTime;
@@ -98,9 +163,9 @@ export function computeEnergyShots(weapon, totalTime, options = {}) {
   if (totalCall > totalTime) return 0;
 
   let baseCd = weapon.reloadTime;
-  if (planetWeather === "Hot") {
+  if (planetWeather === 'Hot') {
     baseCd += 2.5;
-  } else if (planetWeather === "Cold") {
+  } else if (planetWeather === 'Cold') {
     baseCd = Math.max(0, baseCd - 2.5);
   }
   let time = totalCall;

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getUpgradeEffects } from '../js/upgrades.js';
+import { getUpgradeEffects } from '../svelte/src/lib/upgrades/index.ts';
 
 test('Bridge-1 reduces universal cooldown by 5%', () => {
   const effects = getUpgradeEffects(['Bridge-1']);
