@@ -1,0 +1,32 @@
+{
+  // Cloudflare Workers config for HD2 Cooldowns (SvelteKit static build)
+  // Uses Workers Static Assets (not Pages) and a Custom Domain.
+  "name": "hd2-cooldowns",
+  "compatibility_date": "2025-08-29",
+
+  // Do not create a workers.dev route; we will attach a custom domain instead.
+  "workers_dev": false,
+
+  // Run the repo build before deploy so the assets exist at svelte/build
+  "build": {
+    "command": "npm run build"
+  },
+
+  // Serve the pre-rendered static site produced by SvelteKit adapter-static
+  "assets": {
+    // Output directory from `npm run build` (see svelte/adapter-static)
+    "directory": "svelte/build",
+    // Use default HTML routing; unmatched paths return 404 (no SPA fallback needed)
+    "not_found_handling": "404-page"
+  },
+
+  // Attach the worker to your desired host via a Custom Domain.
+  // Cloudflare will manage DNS and certs for this hostname within the `the-doc.org` zone.
+  "routes": [
+    {
+      "pattern": "hd2-cooldowns.the-doc.org",
+      "custom_domain": true
+    }
+  ]
+}
+

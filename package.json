@@ -13,6 +13,7 @@
   "license": "AGPL-3.0",
   "type": "module",
   "devDependencies": {
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "wrangler": "^4.33.1"
   }
 }
