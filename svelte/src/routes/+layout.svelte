@@ -8,7 +8,7 @@
   
   let upgradesOpen = $state(false); // always start closed on load
   
-  const isError = $derived(!!$page.error || (($page.status ?? 200) >= 400));
+  const isError = $derived(!!$page.error || (($page.status ?? 200) >= 400) || $page.url.pathname === '/404');
   const currentPage = $derived($page.url.pathname.startsWith('/rockets') ? 'rockets' : 'stratagems');
   const visibleUpgrades = $derived(ALL_UPGRADES.filter((u) => u.pages.includes(currentPage)));
   const upgradeCategories = $derived(Array.from(new Set(visibleUpgrades.map((u) => u.category))));
@@ -83,7 +83,7 @@
   {@render children?.()}
 </main>
 
-<footer id="footer" class="hidden-until-loaded">
+<footer id="footer" class:hidden-until-loaded={!isError}>
   <p>
     Made by <strong>theDoctor</strong> |
     <a href="https://github.com/thedoctorjtd/HD2-Cooldown-Calculator" target="_blank">GitHub</a>

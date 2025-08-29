@@ -8,6 +8,10 @@ const config = {
 	preprocess: vitePreprocess(),
 
     kit: {
+        paths: {
+            // Use absolute asset URLs so 404.html works from any URL depth
+            relative: false
+        },
         adapter: adapter({
             strict: true
         }),
