@@ -49,6 +49,28 @@
     // default open if not explicitly set
     return openState.hasOwnProperty(cat) ? openState[cat] : true;
   }
+
+  $: if (stratagems.length && $stratagemsOptions.search.trim()) {
+    const filtered = filterStratagems(stratagems, $stratagemsOptions.search);
+    const visibleCats = CATEGORIES_ORDER.filter((c) =>
+      filtered.some((s) => s.category.toLowerCase() === c)
+    );
+    const allCollapsed =
+      visibleCats.length > 0 &&
+      visibleCats.every((c) => !isOpen(c, $stratagemsOptions.categoryOpenState));
+    const allGloballyCollapsed = CATEGORIES_ORDER.every(
+      (c) => !isOpen(c, $stratagemsOptions.categoryOpenState)
+    );
+    if (allCollapsed && !allGloballyCollapsed) {
+      stratagemsOptions.update((s) => ({
+        ...s,
+        categoryOpenState: {
+          ...s.categoryOpenState,
+          ...Object.fromEntries(visibleCats.map((c) => [c, true]))
+        }
+      }));
+    }
+  }
 </script>
 
 <div class="container">
