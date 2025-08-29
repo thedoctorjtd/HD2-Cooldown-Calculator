@@ -36,13 +36,18 @@
   });
 
   function toggleCategory(cat: string) {
-    stratagemsOptions.update((s) => ({
-      ...s,
-      categoryOpenState: {
-        ...s.categoryOpenState,
-        [cat]: !(s.categoryOpenState?.[cat] ?? false)
-      }
-    }));
+    stratagemsOptions.update((s) => {
+      const currentlyOpen = s.categoryOpenState.hasOwnProperty(cat)
+        ? s.categoryOpenState[cat]
+        : true; // default open when unset
+      return {
+        ...s,
+        categoryOpenState: {
+          ...s.categoryOpenState,
+          [cat]: !currentlyOpen
+        }
+      };
+    });
   }
 
   function isOpen(cat: string, openState: Record<string, boolean>) {
