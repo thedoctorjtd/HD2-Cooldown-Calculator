@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ROCKETS } from '$lib/utils/dataLoader';
-  import { upgradeEffects, rocketsOptions } from '$lib/stores';
+  import { upgradeEffects, rocketsOptions, globalOptions } from '$lib/stores';
   import {
     computeExpendableShots,
     computeBackpackShots,
@@ -28,7 +28,7 @@
     const opts = {
       effects: $upgradeEffects,
       complexPlotting: $rocketsOptions.complexPlotting,
-      orbitalFluctuations: $rocketsOptions.orbitalFluctuations,
+      orbitalFluctuations: $globalOptions.orbitalFluctuations,
       planetWeather: $rocketsOptions.planetWeather,
       resupplyCount: $rocketsOptions.resupplyCount
     } as const;
@@ -42,70 +42,72 @@
   }
 </script>
 
-<h1 class="text-xl font-semibold mb-4">Rockets</h1>
-
-<section class="grid gap-4 md:grid-cols-3 mb-6">
-  <div class="flex items-center gap-4">
-    <label class="flex items-center gap-2 text-sm">
-      <input type="checkbox" bind:checked={$rocketsOptions.orbitalFluctuations} />
-      Orbital fluctuations
-    </label>
-    <label class="flex items-center gap-2 text-sm">
-      <input type="checkbox" bind:checked={$rocketsOptions.complexPlotting} />
-      Complex plotting
-    </label>
+<div class="container">
+  <div class="mission-config">
+    <h2>Mission Configuration</h2>
+    <div class="config-row">
+      <label>
+        <input type="checkbox" bind:checked={$globalOptions.orbitalFluctuations} />
+        Orbital Fluctuations (+25% Cooldowns)
+      </label>
+    </div>
+    <div class="config-row">
+      <label>
+        <input type="checkbox" bind:checked={$rocketsOptions.complexPlotting} />
+        Complex Stratagem Plotting (+50% Call-in Time)
+      </label>
+    </div>
+    <div class="config-row">
+      <label for="weather">Planet Weather:</label>
+      <select id="weather" bind:value={$rocketsOptions.planetWeather}>
+        <option value="Normal">Normal</option>
+        <option value="Cold">Cold</option>
+        <option value="Hot">Hot</option>
+      </select>
+    </div>
+    <div class="config-row">
+      <label for="resupply">Resupplies per Pod:</label>
+      <select id="resupply" bind:value={$rocketsOptions.resupplyCount}>
+        <option value={1}>1</option>
+        <option value={2}>2</option>
+        <option value={3}>3</option>
+        <option value={4}>4</option>
+      </select>
+    </div>
   </div>
 
-  <div class="flex items-center gap-2">
-    <label class="text-sm" for="weather">Planet weather</label>
-    <select
-      id="weather"
-      class="rounded border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 px-2 py-1 text-sm"
-      bind:value={$rocketsOptions.planetWeather}
-    >
-      <option value="Normal">Normal</option>
-      <option value="Hot">Hot</option>
-      <option value="Cold">Cold</option>
-    </select>
-  </div>
-
-  <div class="flex items-center gap-2 justify-end">
-    <label class="text-sm" for="resupply">Resupplies per pod</label>
-    <select
-      id="resupply"
-      class="rounded border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 px-2 py-1 text-sm"
-      bind:value={$rocketsOptions.resupplyCount}
-    >
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select>
-  </div>
-</section>
-
-<div class="overflow-x-auto">
-  <table class="min-w-full text-sm">
-    <thead class="text-left text-gray-600 dark:text-gray-300">
-      <tr>
-        <th class="py-1 px-2">Weapon</th>
-        <th class="py-1 px-2">Avg Sec/Shot</th>
-        <th class="py-1 px-2">Shots / 5 Min</th>
-        <th class="py-1 px-2">Shots / 40 Min</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each rockets as w}
-        <tr class="border-t border-gray-200 dark:border-gray-800">
-          <td class="py-1 px-2">{w.name}</td>
-          <td class="py-1 px-2">{avgSecPerShot(shots(w, T40))}</td>
-          <td class="py-1 px-2">{shots(w, T5)}</td>
-          <td class="py-1 px-2">{shots(w, T40)}</td>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Weapon</th>
+          <th>Avg Sec/Shot</th>
+          <th>Shots / 5 Min</th>
+          <th>Shots / 40 Min</th>
         </tr>
-      {/each}
-    </tbody>
-  </table>
-  {#if rockets.length === 0}
-    <p class="text-gray-600 dark:text-gray-300">No rocket data found.</p>
-  {/if}
+      </thead>
+      <tbody>
+        {#each rockets as w}
+          <tr>
+            <td>{w.name}</td>
+            <td>{avgSecPerShot(shots(w, T40))}</td>
+            <td>{shots(w, T5)}</td>
+            <td>{shots(w, T40)}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+    {#if rockets.length === 0}
+      <p>No rocket data found.</p>
+    {/if}
+  </div>
+
+  <div class="disclaimer">
+    <p>
+      <em>
+        Disclaimer: Due to the Commando's low damage output—requiring two rockets per kill—the ammo capacity is
+        effectively halved for these calculations.
+      </em>
+    </p>
+  </div>
 </div>

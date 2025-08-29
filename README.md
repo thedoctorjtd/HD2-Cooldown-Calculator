@@ -21,15 +21,36 @@ This tool lets you select ship upgrades, toggle orbital fluctuations, and see ca
 Pull requests are welcome!
 If you would like to add new features, fix bugs, or expand the data, feel free to open a PR.
 
+## Development
+
+The app now runs as a SvelteKit site under the `svelte/` directory using TypeScript and Tailwind.
+
+Common commands (from repo root):
+
+```bash
+# start dev server (http://localhost:5173)
+npm run dev
+
+# build static site (output in svelte/build)
+npm run build
+
+# preview the production build
+npm run preview
+```
+
 ## Testing
 
-The project uses Node's built-in test runner. After installing Node, run:
+This repo uses Node's built-in test runner for pure logic (no browser required). After installing Node 20+:
 
 ```bash
 npm test
 ```
 
-This will execute the tests found in the `tests/` directory.
+This runs the suites in the `tests/` directory and imports TypeScript directly via `tsx`.
+
+Notes
+- Global mission options like Orbital Fluctuations persist across routes and are shared between pages.
+- The global “Select Your Ship Upgrades” accordion starts closed on load; stratagem category accordions default open and remember their state.
 
 ## License
 
