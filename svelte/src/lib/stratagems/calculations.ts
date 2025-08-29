@@ -1,11 +1,12 @@
 import type { UpgradeEffects } from '$lib/upgrades';
 
-export type StratagemType = 'regular' | 'limited' | 'eagle';
+// Data uses 'unlimited' for non-limited, non-eagle stratagems.
+export type StratagemType = 'unlimited' | 'limited' | 'eagle';
 
 export interface BaseStratagem {
   name: string;
   category: string;
-  type: StratagemType;
+  type: 'unlimited' | 'limited';
   baseCooldown?: number; // regular/limited
   maxUses?: number; // limited
 }

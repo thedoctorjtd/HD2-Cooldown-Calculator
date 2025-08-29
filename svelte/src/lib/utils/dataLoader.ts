@@ -7,8 +7,7 @@ import emplacements from '$lib/data/emplacements.json';
 import vehicles from '$lib/data/vehicles.json';
 import miscellaneous from '$lib/data/miscellaneous.json';
 import rockets from '$lib/data/rockets.json';
-
-export type Stratagem = Record<string, unknown>;
+import type { Stratagem } from '$lib/stratagems/calculations';
 export type Rocket = Record<string, unknown>;
 
 export const STRATAGEM_LISTS: Stratagem[][] = [

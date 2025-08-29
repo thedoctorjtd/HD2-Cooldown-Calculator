@@ -31,8 +31,8 @@
   ];
 
   onMount(() => {
-    // Static import, but keep async in case of future data loading
-    stratagems = loadAllStratagems() as Stratagem[];
+    // Static import; typed by dataLoader using Stratagem from calculations
+    stratagems = loadAllStratagems();
   });
 
   function toggleCategory(cat: string) {
