@@ -136,5 +136,11 @@
     "baseCooldown": 140,
     "type": "unlimited",
     "category": "support weapons"
+  },
+    {
+    "name": "MS-11 Solo Silo",
+    "baseCooldown": 180,
+    "type": "unlimited",
+    "category": "support weapons"
   }
 ]
