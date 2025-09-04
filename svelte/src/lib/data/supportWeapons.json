@@ -124,5 +124,17 @@
     "baseCooldown": 480,
     "type": "unlimited",
     "category": "support weapons"
+  },
+  {
+    "name": "S-11 Speargun",
+    "baseCooldown": 480,
+    "type": "unlimited",
+    "category": "support weapons"
+  },
+  {
+    "name": "EAT-700 Expendable Napalm",
+    "baseCooldown": 140,
+    "type": "unlimited",
+    "category": "support weapons"
   }
 ]

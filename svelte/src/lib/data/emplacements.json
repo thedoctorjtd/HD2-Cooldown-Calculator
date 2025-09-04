@@ -52,5 +52,11 @@
     "baseCooldown": 120,
     "type": "unlimited",
     "category": "emplacements"
+  },
+  {
+    "name": "MS-11 Solo Silo",
+    "baseCooldown": 180,
+    "type": "unlimited",
+    "category": "emplacements"
   }
 ]
