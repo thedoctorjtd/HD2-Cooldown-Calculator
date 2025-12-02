@@ -24,6 +24,12 @@
     "category": "backpacks"
   },
   {
+    "name": "AX/FLAM-75 \"Guard Dog\" Hot Dog",
+    "baseCooldown": 480,
+    "type": "unlimited",
+    "category": "backpacks"
+  },
+  {
     "name": "SH-32 Shield Generator Pack",
     "baseCooldown": 480,
     "type": "unlimited",

@@ -30,6 +30,12 @@
     "category": "support weapons"
   },
   {
+    "name": "M-1000 Maxigun",
+    "baseCooldown": 480,
+    "type": "unlimited",
+    "category": "support weapons"
+  },
+  {
     "name": "GR-8 Recoilless Rifle",
     "baseCooldown": 480,
     "type": "unlimited",
@@ -109,6 +115,12 @@
   },
   {
     "name": "CQC-1 One True Flag",
+    "baseCooldown": 480,
+    "type": "unlimited",
+    "category": "support weapons"
+  },
+  {
+    "name": "CQC-9 Defoliation Tool",
     "baseCooldown": 480,
     "type": "unlimited",
     "category": "support weapons"
