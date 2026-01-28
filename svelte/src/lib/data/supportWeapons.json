@@ -1,158 +1,164 @@
 [
-  {
-    "name": "EAT-17 Expendable Anti-Tank",
-    "baseCooldown": 70,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "MLS-4X Commando",
-    "baseCooldown": 120,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "M-105 Stalwart",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "MG-43 Machine Gun",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "MG-206 Heavy Machine Gun",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "M-1000 Maxigun",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "GR-8 Recoilless Rifle",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "FAF-14 Spear",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "LAS-99 Quasar Cannon",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "LAS-98 Laser Cannon",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "APW-1 Anti-Materiel Rifle",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "RS-422 Railgun",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "AC-8 Autocannon",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "RL-77 Airburst Rocket Launcher",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "SIA-X3 W.A.S.P. Launcher",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "GL-21 Grenade Launcher",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "ARC-3 Arc Thrower",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "FLAM-40 Flamethrower",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "TX-41 Sterilizer",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "CQC-1 One True Flag",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "CQC-9 Defoliation Tool",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "GL-52 De-Escalator",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "PLAS-45 Epoch",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "S-11 Speargun",
-    "baseCooldown": 480,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-  {
-    "name": "EAT-700 Expendable Napalm",
-    "baseCooldown": 140,
-    "type": "unlimited",
-    "category": "support weapons"
-  },
-    {
-    "name": "MS-11 Solo Silo",
-    "baseCooldown": 180,
-    "type": "unlimited",
-    "category": "support weapons"
-  }
+	{
+		"name": "EAT-17 Expendable Anti-Tank",
+		"baseCooldown": 70,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "MLS-4X Commando",
+		"baseCooldown": 120,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "M-105 Stalwart",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "MG-43 Machine Gun",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "MG-206 Heavy Machine Gun",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "M-1000 Maxigun",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "GR-8 Recoilless Rifle",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "FAF-14 Spear",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "LAS-99 Quasar Cannon",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "LAS-98 Laser Cannon",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "APW-1 Anti-Materiel Rifle",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "RS-422 Railgun",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "AC-8 Autocannon",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "RL-77 Airburst Rocket Launcher",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "SIA-X3 W.A.S.P. Launcher",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "GL-21 Grenade Launcher",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "ARC-3 Arc Thrower",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "FLAM-40 Flamethrower",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "TX-41 Sterilizer",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "CQC-1 One True Flag",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "CQC-9 Defoliation Tool",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "GL-52 De-Escalator",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "PLAS-45 Epoch",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "S-11 Speargun",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "EAT-700 Expendable Napalm",
+		"baseCooldown": 140,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "MS-11 Solo Silo",
+		"baseCooldown": 180,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "B/MD C4 Pack",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	}
 ]
