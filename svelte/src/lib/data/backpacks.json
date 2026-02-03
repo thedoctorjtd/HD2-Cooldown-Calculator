@@ -61,7 +61,7 @@
   },
   {
     "name": "SH-20 Ballistic Shield Backpack",
-    "baseCooldown": 300,
+    "baseCooldown": 240,
     "type": "unlimited",
     "category": "backpacks"
   },

@@ -12,6 +12,18 @@
 		"category": "support weapons"
 	},
 	{
+		"name": "EAT-700 Expendable Napalm",
+		"baseCooldown": 140,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "EAT-411 Leveler",
+		"baseCooldown": 140,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
 		"name": "M-105 Stalwart",
 		"baseCooldown": 480,
 		"type": "unlimited",
@@ -96,6 +108,18 @@
 		"category": "support weapons"
 	},
 	{
+		"name": "GL-28 Belt-Fed Grenade Launcher",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
+		"name": "GL-52 De-Escalator",
+		"baseCooldown": 480,
+		"type": "unlimited",
+		"category": "support weapons"
+	},
+	{
 		"name": "ARC-3 Arc Thrower",
 		"baseCooldown": 480,
 		"type": "unlimited",
@@ -126,7 +150,7 @@
 		"category": "support weapons"
 	},
 	{
-		"name": "GL-52 De-Escalator",
+		"name": "CQC-20 Breaching Hammer",
 		"baseCooldown": 480,
 		"type": "unlimited",
 		"category": "support weapons"
@@ -140,12 +164,6 @@
 	{
 		"name": "S-11 Speargun",
 		"baseCooldown": 480,
-		"type": "unlimited",
-		"category": "support weapons"
-	},
-	{
-		"name": "EAT-700 Expendable Napalm",
-		"baseCooldown": 140,
 		"type": "unlimited",
 		"category": "support weapons"
 	},

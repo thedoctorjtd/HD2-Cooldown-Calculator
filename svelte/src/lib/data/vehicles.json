@@ -18,5 +18,11 @@
     "baseCooldown": 480,
     "type": "unlimited",
     "category": "vehicles"
+  },
+  {
+    "name": "TD-220 Bastion MK XVI",
+    "baseCooldown": 780,
+    "type": "unlimited",
+    "category": "vehicles"
   }
 ]
